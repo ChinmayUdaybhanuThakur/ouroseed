@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "name": "The locked workshop",
+  "description": "A lathe needs a mill to be built; a mill needs a lathe. Four pieces of metal are enough for both, but neither machine exists yet. Find a borrowed starter machine, build the workshop, then return a machine of the same kind. These are illustrative toy recipes, not manufacturing instructions.",
+  "resources": [
+    { "id": "metal", "label": "Metal stock", "initial": 4, "capacity": 4, "seedMax": 0, "seedCost": 1 },
+    { "id": "blank", "label": "Cut blanks", "initial": 0, "capacity": 4, "seedMax": 0, "seedCost": 1 },
+    { "id": "lathe", "label": "Lathes", "initial": 0, "capacity": 2, "seedMax": 1, "seedCost": 3 },
+    { "id": "mill", "label": "Mills", "initial": 0, "capacity": 2, "seedMax": 1, "seedCost": 3 }
+  ],
+  "recipes": [
+    { "id": "cut-stock", "label": "Hand-cut a blank", "consume": { "metal": 1 }, "produce": { "blank": 1 }, "require": {} },
+    { "id": "build-lathe", "label": "Build a lathe with a mill", "consume": { "blank": 2 }, "produce": { "lathe": 1 }, "require": { "mill": 1 } },
+    { "id": "build-mill", "label": "Build a mill with a lathe", "consume": { "blank": 2 }, "produce": { "mill": 1 }, "require": { "lathe": 1 } }
+  ],
+  "goal": { "lathe": 1, "mill": 1 }
+}

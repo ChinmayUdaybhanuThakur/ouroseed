@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "name": "The shared consumable trap",
+  "description": "The recipe graph has a path to both components, but both paths spend the same single resin unit. A connected graph does not imply a feasible assembly sequence. No additional supplies are allowed in this scenario.",
+  "resources": [
+    { "id": "resin", "label": "Resin units", "initial": 1, "capacity": 1, "seedMax": 0, "seedCost": 1 },
+    { "id": "housing", "label": "Housings", "initial": 0, "capacity": 1, "seedMax": 0, "seedCost": 1 },
+    { "id": "seal", "label": "Seals", "initial": 0, "capacity": 1, "seedMax": 0, "seedCost": 1 },
+    { "id": "assembly", "label": "Finished assemblies", "initial": 0, "capacity": 1, "seedMax": 0, "seedCost": 1 }
+  ],
+  "recipes": [
+    { "id": "cast-housing", "label": "Cast the housing", "consume": { "resin": 1 }, "produce": { "housing": 1 }, "require": {} },
+    { "id": "cast-seal", "label": "Cast the seal", "consume": { "resin": 1 }, "produce": { "seal": 1 }, "require": {} },
+    { "id": "assemble", "label": "Join housing and seal", "consume": { "housing": 1, "seal": 1 }, "produce": { "assembly": 1 }, "require": {} }
+  ],
+  "goal": { "assembly": 1 }
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "name": "A battery you cannot return",
+  "description": "One charged battery can power a beacon once. The battery becomes empty, and this model has no recharging process. A gift works; a loan requiring the charged battery back does not. Resource identity is the charge state, not the physical battery shell.",
+  "resources": [
+    { "id": "charged-battery", "label": "Charged batteries", "initial": 0, "capacity": 1, "seedMax": 1, "seedCost": 2 },
+    { "id": "empty-battery", "label": "Empty batteries", "initial": 0, "capacity": 1, "seedMax": 0, "seedCost": 1 },
+    { "id": "beacon", "label": "Beacon signals sent", "initial": 0, "capacity": 1, "seedMax": 0, "seedCost": 1 }
+  ],
+  "recipes": [
+    { "id": "signal", "label": "Send one beacon signal", "consume": { "charged-battery": 1 }, "produce": { "empty-battery": 1, "beacon": 1 }, "require": {} }
+  ],
+  "goal": { "beacon": 1 }
+}

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "name": "A starter you can repay",
+  "description": "A borrowed culture can turn feedstock into more culture. Grow twice, harvest once, return the borrowed unit, and retain a working culture plus a product. This is a discrete teaching model, not a biological growth model.",
+  "resources": [
+    { "id": "feedstock", "label": "Feedstock units", "initial": 3, "capacity": 3, "seedMax": 0, "seedCost": 1 },
+    { "id": "culture", "label": "Culture units", "initial": 0, "capacity": 3, "seedMax": 1, "seedCost": 1 },
+    { "id": "product", "label": "Harvested products", "initial": 0, "capacity": 1, "seedMax": 0, "seedCost": 1 }
+  ],
+  "recipes": [
+    { "id": "grow", "label": "Grow another culture unit", "consume": { "feedstock": 1 }, "produce": { "culture": 1 }, "require": { "culture": 1 } },
+    { "id": "harvest", "label": "Harvest a product", "consume": { "culture": 1, "feedstock": 1 }, "produce": { "product": 1 }, "require": {} }
+  ],
+  "goal": { "culture": 1, "product": 1 }
+}
