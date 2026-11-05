@@ -1,0 +1,16 @@
+{
+  "name": "ouroseed",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An exact, bounded bootstrap loan planner with replayable resource witnesses.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "test": "node --test",
+    "build": "node scripts/build.mjs",
+    "solve": "node src/cli.js solve",
+    "verify": "node src/cli.js verify"
+  },
+  "license": "MIT"
+}

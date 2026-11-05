@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#153f32">
+  <meta name="description" content="Find the smallest-cost starter kit you can borrow, build with, and return. An inspectable finite-inventory planning lab.">
+  <title>Ouroseed — a returnable beginning</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./src/app.js"></script>
+</head>
+<body>
+  <header class="site-header wrap">
+    <a class="wordmark" href="./" aria-label="Ouroseed home"><span class="mark" aria-hidden="true">↻</span> ouroseed<span class="version">/ 01</span></a>
+    <span class="local-note"><i></i> Runs on your device</span>
+  </header>
+  <main class="wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <div><p class="eyebrow">A LAB FOR RETURNABLE STARTER KITS</p><h1 id="hero-title">Borrow the beginning.<br><em>Return it at the end.</em></h1></div>
+      <div class="hero-note"><span class="note-number">01 — THE QUESTION</span><p>A workshop needs tools to make tools. What is the cheapest kit that gets it started—and can be paid back in full?</p><p class="fine">Give it recipes and finite stock. Inspect every step of the answer.</p></div>
+    </section>
+    <div class="workspace">
+      <aside class="setup panel" aria-labelledby="setup-title">
+        <div class="section-title"><span class="eyebrow">SET UP THE EXPERIMENT</span><span class="small-mono">A</span></div>
+        <h2 id="setup-title">Your little workshop</h2>
+        <label class="field-label" for="scenario">Choose a starting point</label>
+        <select id="scenario"><option value="">Loading examples…</option></select>
+        <p id="scenario-description" class="muted"></p>
+        <fieldset class="mode-field"><legend class="field-label">What happens to the starter kit?</legend><div class="segmented"><button type="button" id="mode-loan" class="active" aria-pressed="true">Borrow &amp; return</button><button type="button" id="mode-gift" aria-pressed="false">Keep as a gift</button></div></fieldset>
+        <p id="mode-help" class="fine">Finish with your target stock plus everything you borrowed. Return the kit; keep the target.</p>
+        <div class="model-summary" id="model-summary"></div>
+        <div class="run-row"><button id="run" class="primary" type="button">Find a starter kit <span aria-hidden="true">↗</span></button><button id="cancel" class="secondary" type="button" hidden>Cancel</button></div>
+        <p id="run-status" role="status" aria-live="polite" class="fine">Loading the first model.</p>
+        <p id="error" role="alert" class="error" hidden></p>
+        <details class="editor"><summary>Edit the model <span aria-hidden="true">+</span></summary><p class="fine">Change initial stock, costs, capacities, targets, or recipes. Apply before running. Item counts and costs are whole numbers.</p><label for="model-json" class="sr-only">Model JSON</label><textarea id="model-json" spellcheck="false" rows="15"></textarea><button id="apply-model" type="button" class="secondary full-width">Apply edits</button></details>
+        <div class="file-actions"><label class="text-button" for="import-model">↑ Open model<input id="import-model" type="file" accept=".json,application/json" class="sr-only"></label><button id="download-model" class="text-button" type="button">↓ Save model</button></div>
+        <p class="fine boundary">Small worlds, exact rules. Results apply to the entered recipes, stock capacities, and borrowing limits.</p>
+      </aside>
+      <section class="result-area" aria-labelledby="result-title">
+        <div class="section-title"><span class="eyebrow">FOLLOW THE MATERIALS</span><span class="small-mono">B</span></div>
+        <div class="result-heading"><h2 id="result-title">A beginning you can give back</h2><span id="result-badge" class="badge">READY TO EXPLORE</span></div>
+        <div id="results" aria-live="polite">
+          <div class="empty-state"><span class="empty-orbit" aria-hidden="true">↻</span><h3>Every beginning has a cost.</h3><p>The planner is preparing your first experiment.</p></div>
+        </div>
+        <div id="plan" hidden>
+          <div class="comparison" id="comparison"></div>
+          <div id="verdict-note" class="verdict-note"></div>
+          <div class="panel replay-panel">
+            <div class="section-title"><span class="eyebrow">THE STARTER KIT</span><span id="kit-count" class="small-mono"></span></div>
+            <div id="kits" class="kits"></div>
+            <div id="trace-area">
+              <div class="replay-heading"><h3>Follow the handoff</h3><span id="step-label" class="small-mono"></span></div>
+              <div id="trace" class="trace" role="group" aria-label="Plan steps"></div>
+              <label class="sr-only" for="scrubber">Inventory step</label><input id="scrubber" type="range" min="0" max="1" value="0">
+              <div id="step-description" class="step-description"></div>
+              <div class="inventory-heading"><h4>What's on the workbench</h4><span class="fine">The shaded share is owed back</span></div>
+              <div id="inventory" class="inventory"></div>
+              <div class="witness-footer"><p id="witness-status" class="fine"></p><button id="download-witness" type="button" class="secondary">↓ Save witness</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="panel context-panel"><div class="context-column"><span class="eyebrow">START WITHOUT A KIT?</span><p id="baseline">Run the model to check whether the initial stock is enough.</p></div><div class="context-column"><span class="eyebrow">WHAT THE ANSWER MEANS</span><p id="bounds-note">This is a recipe model, not a physical feasibility claim. Finite inventory and borrowing caps define the search domain.</p></div></div>
+      </section>
+    </div>
+    <section class="recipes-section" aria-labelledby="recipes-title"><div class="section-title"><span class="eyebrow">THE RULES OF THIS WORLD</span><span class="small-mono">C</span></div><div class="recipes-heading"><h2 id="recipes-title">Nothing appears by assumption.</h2><p class="fine">Requirements are kept. Inputs are consumed.<br>Only listed outputs enter the inventory.</p></div><div id="recipes" class="recipes"></div></section>
+    <section class="verify-panel panel" aria-labelledby="verify-title"><div><span class="eyebrow">DON'T JUST TAKE ITS WORD</span><h2 id="verify-title">Bring your own witness.</h2><p class="muted">Open a saved certificate. A separate verifier checks each inventory transition, the target, and the repayment. It checks feasibility, not minimum cost.</p></div><div class="verify-action"><label for="import-witness" class="secondary file-button">↑ Verify a witness<input id="import-witness" type="file" accept=".json,application/json" class="sr-only"></label><p id="verify-status" role="status" aria-live="polite" class="fine">Verification runs locally.</p></div></section>
+  </main>
+  <footer class="wrap"><span class="wordmark footer-wordmark">↻ ouroseed</span><p>A finite-world planning instrument. Built from established ideas, with an inspectable trail.</p><a href="./docs/PRIOR_ART.md">Research &amp; prior art ↗</a></footer>
+</body>
+</html>
